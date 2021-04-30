@@ -20,10 +20,15 @@ class SerialGenerator:
     100
     """
     def __init__(self,start):
+      """ initiates serial generator at a number, defauled to 100
+        start: starting number
+        curr_num: tracker for current generated number
+      """
       self.start = start
       self.curr_num = ''
     
     def generate(self):
+      """indexes and returns a number, starting from self.start"""
       if isinstance(self.curr_num, int):
         self.curr_num += 1 
       else:
@@ -31,4 +36,5 @@ class SerialGenerator:
       return self.curr_num
     
     def reset(self):
+      """resets the curr_num so that obj generates the start number next"""
       self.curr_num = ''
