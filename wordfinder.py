@@ -7,13 +7,13 @@ class WordFinder:
     >>> new_dict = WordFinder('word_finder_test.txt')
     4 words read
 
-    >>> new_dict.random() in ['kale','parsnips','apple','mango']
-    True
-
     >>> isinstance( new_dict.random(), str )
     True
+
+    >>> new_dict.random() in ['kale','parsnips','apple','mango']
+    True
     """
-    def __init__(self,file):
+    def __init__(self,file,display_msg=True):
       self.dictionary = set()
 
       self.word_file = open(file,"r")
@@ -21,7 +21,8 @@ class WordFinder:
         self.dictionary.add(word.strip())
       self.word_file.close()
       
-      self.init_msg()
+      if display_msg:
+        self.init_msg()
 
     def init_msg(self,msg=''):
       """displays the # of dictionary words at initialization"""
@@ -30,8 +31,8 @@ class WordFinder:
 
     def random(self):
       """selects a random word from the dictionary"""
+      
       return random.sample(self.dictionary,1)[0]
-      """why does this return a NoneType?"""
 
 # new_dict = WordFinder('words.txt')
 
@@ -41,9 +42,13 @@ class SpecialWordFinder(WordFinder):
     def __init__(self,file):
       """Filters blank lines & comments and displays an update message"""
       
-      super().__init__(file)
+      super().__init__(file,False)
       self.dictionary = {word for word in self.dictionary if not (word == '' or word.startswith('#'))}
       super().init_msg('Filtering dictionary... ')
-      """Can we prevent the parent class from calling it's own message?"""
+    
+    def init_msg(self,msg=''):
+      """displays the # of dictionary words at initialization"""
+
+      print(f"{msg}{len(self.dictionary)} words read")
     
 # new_dict = SpecialWordFinder('test_words.txt')
