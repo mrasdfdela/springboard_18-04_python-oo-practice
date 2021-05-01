@@ -9,6 +9,9 @@ class WordFinder:
 
     >>> new_dict.random() in ['kale','parsnips','apple','mango']
     True
+
+    >>> isinstance( new_dict.random(), str )
+    True
     """
     def __init__(self,file):
       self.dictionary = set()
