@@ -38,3 +38,7 @@ class SerialGenerator:
     def reset(self):
       """resets the curr_num so that obj generates the start number next"""
       self.curr_num = ''
+
+    def __repr__(self):
+      var = self.start if self.start == '' else self.start + 1
+      return f"<SerialGenerator start={self.start} next={var}>"
